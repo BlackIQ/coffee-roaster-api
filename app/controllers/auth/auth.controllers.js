@@ -10,7 +10,7 @@ export const LOGIN = async (req, res) => {
     const result = await User.findOne({
       email,
       password: md5(password),
-    }).select("-password -createdAt -updatedAt -__v");
+    }).select("-createdAt -updatedAt -__v");
 
     if (result) {
       return res.status(200).send({

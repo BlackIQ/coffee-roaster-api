@@ -2,7 +2,7 @@ import { Support } from "$app/models/index.js";
 
 export const ALL = async (req, res) => {
   try {
-    const all = await Support.find();
+    const all = await Support.find().sort({ createdAt: -1 });
 
     return res.status(200).send(all);
   } catch (error) {
@@ -26,7 +26,7 @@ export const FOR = async (req, res) => {
   const { user } = req.params;
 
   try {
-    const all = await Support.find({ user });
+    const all = await Support.find({ user }).sort({ createdAt: -1 });
 
     return res.status(200).send(all);
   } catch (error) {
@@ -41,9 +41,9 @@ export const SINGLE = async (req, res) => {
     const single = await Support.findById(id);
 
     if (single) {
-      if (single.status === 0) {
-        await Support.findByIdAndUpdate(id, { $set: { status: 1 } });
-      }
+      // if (single.status === 0) {
+      //   await Support.findByIdAndUpdate(id, { $set: { status: 1 } });
+      // }
 
       return res.status(200).send(single);
     } else {
@@ -81,7 +81,7 @@ export const RATE = async (req, res) => {
     const single = await Support.findById(id);
 
     if (single) {
-      await Support.findByIdAndUpdate(id, { $set: { rate } });
+      await Support.findByIdAndUpdate(id, { $set: { rate, isRated: true } });
 
       return res.status(200).send({ message: "Ticket rated" });
     } else {
