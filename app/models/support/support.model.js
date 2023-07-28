@@ -6,6 +6,10 @@ const { Schema } = mongoose;
 
 const schema = Schema(
   {
+    title: {
+      type: String,
+      default: "",
+    },
     body: {
       type: String,
       default: "",
@@ -21,6 +25,10 @@ const schema = Schema(
     rate: {
       type: Number,
       default: 0,
+    },
+    isRated: {
+      type: Boolean,
+      default: false,
     },
     user: {
       type: Schema.Types.ObjectId,
