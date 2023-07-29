@@ -8,7 +8,7 @@ const schema = Schema(
   {
     name: {
       type: String,
-      default: "",
+      default: "No name",
     },
     email: {
       type: String,

@@ -40,6 +40,7 @@ export const REGISTER = async (req, res) => {
 
       return res.status(200).send({
         message: "You are now registered!",
+        user,
         token: createToken(user._id),
       });
     } else {
