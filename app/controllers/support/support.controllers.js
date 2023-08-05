@@ -22,18 +22,6 @@ export const CREATE = async (req, res) => {
   }
 };
 
-export const FOR = async (req, res) => {
-  const { user } = req.params;
-
-  try {
-    const all = await Support.find({ user }).sort({ createdAt: -1 });
-
-    return res.status(200).send(all);
-  } catch (error) {
-    return res.status(500).send({ message: error.message });
-  }
-};
-
 export const SINGLE = async (req, res) => {
   const { id } = req.params;
 
