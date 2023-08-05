@@ -2,7 +2,7 @@ import { Support } from "$app/models/index.js";
 
 export const ALL = async (req, res) => {
   try {
-    const all = await Support.find().sort({ createdAt: -1 });
+    const all = await Support.find(req.query).sort({ createdAt: -1 });
 
     return res.status(200).send(all);
   } catch (error) {
